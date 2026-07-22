@@ -157,6 +157,7 @@
     color:#0E1517;margin-right:9px;vertical-align:middle;letter-spacing:0;
   }
   .team-cell{display:flex;align-items:center;}
+.badge-logo{object-fit:contain;background:#fff;padding:2px;}
   .legend{font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;}
 
   /* ---- Fixtures ---- */
@@ -331,18 +332,18 @@ const SEASON = {
 };
 
 const TEAMS = [
-  {id:"bas", name:"FC Basel 1893",        short:"Basel",            init:"BAS", color:"#E63946"},
-  {id:"yb",  name:"BSC Young Boys",       short:"Young Boys",       init:"YB",  color:"#F2C230"},
-  {id:"fcz", name:"FC Zürich",            short:"Zürich",           init:"FCZ", color:"#2154C7"},
-  {id:"stg", name:"FC St. Gallen 1879",   short:"St. Gallen",       init:"STG", color:"#4C9A2A"},
-  {id:"lug", name:"FC Lugano",            short:"Lugano",           init:"LUG", color:"#1A1A1A"},
-  {id:"gen", name:"Servette FC",          short:"Servette",         init:"SER", color:"#9D2360"},
-  {id:"luz", name:"FC Luzern",            short:"Luzern",           init:"LUZ", color:"#0E9AA0"},
-  {id:"sio", name:"FC Sion",              short:"Sion",             init:"SIO", color:"#DC5B2E"},
-  {id:"thu", name:"FC Thun",              short:"Thun",             init:"THU", color:"#8C3A34"},
-  {id:"gc",  name:"Grasshopper Club Zürich", short:"GC",            init:"GC",  color:"#5A3FC0"},
-  {id:"lau", name:"FC Lausanne-Sport",    short:"Lausanne-Sport",   init:"LAU", color:"#1590A8"},
-  {id:"vad", name:"FC Vaduz",             short:"Vaduz",            init:"VAD", color:"#22409A"},
+  {id:"bas", name:"FC Basel 1893",        short:"Basel",            init:"BAS", color:"#E63946", logo:"Super%20League%20Logos/FC_Basel.png"},
+  {id:"yb",  name:"BSC Young Boys",       short:"Young Boys",       init:"YB",  color:"#F2C230", logo:"Super%20League%20Logos/BSC_Young_Boys.svg.webp"},
+  {id:"fcz", name:"FC Zürich",            short:"Zürich",           init:"FCZ", color:"#2154C7", logo:"Super%20League%20Logos/FC_Zurich_Logo_2022.svg.webp"},
+  {id:"stg", name:"FC St. Gallen 1879",   short:"St. Gallen",       init:"STG", color:"#4C9A2A", logo:"Super%20League%20Logos/FC_St._Gallen_logo.svg.webp"},
+  {id:"lug", name:"FC Lugano",            short:"Lugano",           init:"LUG", color:"#1A1A1A", logo:"Super%20League%20Logos/Logo_FC_Lugano_2025.svg.webp"},
+  {id:"gen", name:"Servette FC",          short:"Servette",         init:"SER", color:"#9D2360", logo:"Super%20League%20Logos/Servette_FC_Etoile.svg.webp"},
+  {id:"luz", name:"FC Luzern",            short:"Luzern",           init:"LUZ", color:"#0E9AA0", logo:"Super%20League%20Logos/FC_Luzern_Logo.svg.webp"},
+  {id:"sio", name:"FC Sion",              short:"Sion",             init:"SIO", color:"#DC5B2E", logo:"Super%20League%20Logos/FC_Sion.svg.webp"},
+  {id:"thu", name:"FC Thun",              short:"Thun",             init:"THU", color:"#8C3A34", logo:"Super%20League%20Logos/FC_Thun_Logo_2011.svg.webp"},
+  {id:"gc",  name:"Grasshopper Club Zürich", short:"GC",            init:"GC",  color:"#5A3FC0", logo:"Super%20League%20Logos/GC_Zürich_Logo.svg.webp"},
+  {id:"lau", name:"FC Lausanne-Sport",    short:"Lausanne-Sport",   init:"LAU", color:"#1590A8", logo:"Super%20League%20Logos/FC_Lausanne-Sport_logo.svg.webp"},
+  {id:"vad", name:"FC Vaduz",             short:"Vaduz",            init:"VAD", color:"#22409A", logo:"FC_Vaduz_Logo.svg.webp"},
 ];
 
 // Ein Eintrag pro Spiel. score:null = noch nicht gespielt.
@@ -384,6 +385,9 @@ const textColorFor = hex => {
 };
 const badge = id => {
   const t = byId(id);
+  if (t.logo) {
+    return `<img class="badge badge-logo" src="${t.logo}" alt="${t.short}" loading="lazy">`;
+  }
   return `<span class="badge" style="background:${t.color};color:${textColorFor(t.color)}">${t.init}</span>`;
 };
 
